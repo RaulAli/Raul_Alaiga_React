@@ -1,0 +1,9 @@
+// USER
+
+/auth/register
+/auth/login
+/auth/list (list de usuarios)
+
+// MESSAGES
+/message/send
+/conversation/nameUser
