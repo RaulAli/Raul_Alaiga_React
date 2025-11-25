@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Conversation = require('../models/Conversation');
 const auth = require('../middleware/auth');
 
 router.post('/register', async (req, res) => {
@@ -24,6 +25,21 @@ router.post('/register', async (req, res) => {
         });
 
         await user.save();
+
+        // Lógica para añadir al usuario al chat General
+        let generalChat = await Conversation.findOne({ type: 'general' });
+
+        if (!generalChat) {
+            generalChat = new Conversation({
+                name: 'General',
+                type: 'general',
+                members: [],
+            });
+        }
+
+        generalChat.members.push(user._id);
+        await generalChat.save();
+
 
         res.status(201).json({ user });
 

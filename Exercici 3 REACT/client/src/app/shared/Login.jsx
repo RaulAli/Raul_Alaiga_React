@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,11 +31,9 @@ const Login = () => {
                 throw new Error(data.msg || 'Error al iniciar sesión.');
             }
 
-            localStorage.setItem('token', data.token);
-            console.log('Inicio de sesión exitoso. Token:', data.token);
-            setTimeout(() => {
-                navigate('/home');
-            }, 2000);
+            // Call the login function from the context
+            login(data.token);
+            // No need to navigate, App.jsx will re-render and show the home page
 
         } catch (err) {
             setError(err.message);

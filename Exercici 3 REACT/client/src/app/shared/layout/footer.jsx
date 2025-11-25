@@ -6,7 +6,7 @@ const AuthPage = () => {
         <div className="footer">
             <div className="footer-container">
                 <header className="footer-header">
-                    <h1>Aqui va el footer</h1>
+                    <h1>No se que poner como footer</h1>
                 </header>
             </div>
         </div>

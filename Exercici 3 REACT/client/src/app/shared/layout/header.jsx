@@ -6,7 +6,7 @@ const AuthPage = () => {
         <div className="header">
             <div className="header-container">
                 <header className="auth-header">
-                    <h1>Aqui va el icono</h1>
+                    <h1>CHATTING</h1>
                 </header>
             </div>
         </div>
