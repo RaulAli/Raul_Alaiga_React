@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  libretranslate:
+    container_name: libretranslate
+    image: libretranslate/libretranslate:latest
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - LT_LOAD_ONLY=en,es,fr,de,it,pt
+      - LT_DOWNLOAD_BASE_URL=/tmp/
+      - LT_SETTINGS_DIRECTORY=/tmp/
